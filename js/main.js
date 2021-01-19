@@ -1,23 +1,36 @@
-var canvasW = 640;
-var canvasH = 480;
 
+
+// Settings Variables
 var color = "blue";
 var speed = 2;
+var settings = 1;
+var colorMode = 1;
+var backgroundColor = "white";
 
-var xSpeed = Math.random() * speed;
-if(Math.random() * 2 <= 1){
-    xSpeed = xSpeed * -1;
+// Global Variables
+var c;
+var ctx;
+var xSpeed;
+var ySpeed;
+var xPos
+var yPos
+
+
+// Random speed
+
+function directionCalc(){
+    xSpeed = Math.random() * speed;
+    if(Math.random() * 2 <= 1){
+        xSpeed = xSpeed * -1;
+    }
+
+    ySpeed = Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+    if(Math.random() * 2 <= 1){
+        ySpeed = ySpeed * -1;
+    }
+    xPos = window.innerWidth/2;
+    yPos = window.innerHeight/2;
 }
-
-console.log(xSpeed);
-
-var ySpeed = Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
-if(Math.random() * 2 <= 1){
-    ySpeed = ySpeed * -1;
-}
-var xPos = window.innerWidth/2;
-var yPos = window.innerHeight/2;
-
 
 
 function initCanvas(){
@@ -26,11 +39,47 @@ function initCanvas(){
     canvas.height = window.innerHeight; 
 }
 
-function drawLogo(){
-    var c = document.getElementById("fsCanvas");
+function draw(){
+    
+    drawLogo(xPos, yPos, color);
+    // drawCog();
+
+
+    if(settings == 1){
+        drawSettings();
+    }
+
+}
+
+function animation() {
+    requestAnimationFrame(animation);
+    xPos += xSpeed;
+    yPos += ySpeed; 
+
+    if(xPos+20 <= 0 || xPos+270 >= window.innerWidth) {
+        xSpeed = -xSpeed;
+    }
+
+    if(yPos+20 <= 0 || yPos+165 >= window.innerHeight) {
+        ySpeed = -ySpeed;
+    }
+    draw();
+}
+
+document.addEventListener("DOMContentLoaded", function () { // Starting the programm
+    directionCalc();
+    initCanvas();
+    draw();
+    animation();
+});
+
+function drawLogo(xPos, yPos, color){
+    c = document.getElementById("fsCanvas");
     c.width = window.innerWidth;
     c.height = window.innerHeight; 
-    var ctx = c.getContext("2d");
+    ctx = c.getContext("2d");
+    
+
     var pi = Math.PI
     
     // i from logo
@@ -100,27 +149,23 @@ function drawLogo(){
     ctx.fillStyle = color;
     ctx.fillText("ims-T", xPos + 10, yPos + 150);
     */
+}
+
+function drawSettings(){
+    ctx.beginPath();
+    ctx.rect(20, 80, 400, 500);
+    ctx.fillStyle = "grey";
+    ctx.globalAlpha = 0.6; // Transperancy on
+    ctx.fill();
+    ctx.globalAlpha = 1; // Transperancy off
+    ctx.font = "50px Impact";
+    ctx.fillStyle = "black";
+    ctx.fillText("Settings", 130, 150);
     
+    ctx.beginPath();
+    ctx.rect(100, 200, 25, 25);
+    ctx.fillStyle = "grey";
+    ctx.fill();
 
+    
 }
-
-function animation() {
-    requestAnimationFrame(animation);
-    xPos += xSpeed;
-    yPos += ySpeed; 
-
-    if(xPos+20 <= 0 || xPos+270 >= window.innerWidth) {
-        xSpeed = -xSpeed;
-    }
-
-    if(yPos+20 <= 0 || yPos+165 >= window.innerHeight) {
-        ySpeed = -ySpeed;
-    }
-    drawLogo();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    initCanvas();
-    drawLogo();
-    animation();
-});
