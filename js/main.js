@@ -2,7 +2,7 @@
 
 // Settings Variables
 var color = "blue";
-var speed = 2;
+var speed = 0;
 var settings = 1;
 var colorMode = 1;
 var backgroundColor = "white";
@@ -39,6 +39,8 @@ function initCanvas(){
     canvas.height = window.innerHeight; 
 }
 
+
+
 function draw(){
     
     drawLogo(xPos, yPos, color);
@@ -69,7 +71,6 @@ function animation() {
 document.addEventListener("DOMContentLoaded", function () { // Starting the programm
     directionCalc();
     initCanvas();
-    draw();
     animation();
 });
 
@@ -152,20 +153,64 @@ function drawLogo(xPos, yPos, color){
 }
 
 function drawSettings(){
+
+    // Settings menu
     ctx.beginPath();
-    ctx.rect(20, 80, 400, 500);
+    ctx.rect(20, 80, 400, 370);
     ctx.fillStyle = "grey";
     ctx.globalAlpha = 0.6; // Transperancy on
     ctx.fill();
     ctx.globalAlpha = 1; // Transperancy off
-    ctx.font = "50px Impact";
+   
+    ctx.font = "50px Impact"; // Title
     ctx.fillStyle = "black";
     ctx.fillText("Settings", 130, 150);
     
-    ctx.beginPath();
-    ctx.rect(100, 200, 25, 25);
+    ctx.beginPath(); //Color Mode
+    ctx.rect(270, 200, 25, 25);
     ctx.fillStyle = "grey";
     ctx.fill();
+    ctx.font = "30px Arial"; 
+    ctx.fillStyle = "black";
+    ctx.fillText("Color Mode", 70, 223);
+
+    ctx.font = "30px Arial"; //Speed
+    ctx.fillStyle = "black";
+    ctx.fillText("Speed", 70, 280); 
+    ctx.fillStyle = "grey";
+    ctx.fillRect(200, 257, 25, 25);
+    ctx.fillRect(240, 257, 25, 25);
+    ctx.fillRect(280, 257, 25, 25);
+    ctx.fillRect(320, 257, 25, 25);
+    ctx.fillRect(360, 257, 25, 25);
+
+    ctx.font = "30px Arial"; //Colors
+    ctx.fillStyle = "black";
+    ctx.fillText("Color", 70, 340); 
+    ctx.fillStyle = "black";
+    ctx.fillRect(200, 318, 25, 25);
+    ctx.fillStyle = "white";
+    ctx.fillRect(240, 318, 25, 25);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(280, 318, 25, 25);
+    ctx.fillStyle = "red";
+    ctx.fillRect(320, 318, 25, 25);
+    ctx.fillStyle = "green";
+    ctx.fillRect(360, 318, 25, 25);
+
+    ctx.font = "30px Arial"; // Background color
+    ctx.fillStyle = "black";
+    ctx.fillText("Background", 70, 400); 
+    ctx.fillStyle = "black";
+    ctx.fillRect(280, 378, 25, 25);
+    ctx.fillStyle = "grey";
+    ctx.fillRect(320, 378, 25, 25);
+    ctx.fillStyle = "white";
+    ctx.fillRect(360, 378, 25, 25);
 
     
+}
+
+function processClick(mouseX, mouseY) {
+    log(mouseX, mouseY);
 }
