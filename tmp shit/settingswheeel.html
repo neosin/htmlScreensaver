@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
+
+<script>
+var pi = Math.PI;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(50, 50, 20, 0, 2*pi);
+ctx.fill();
+
+ctx.rotate(0.5*pi);
+ctx.rect(25, -55, 50, 10);
+ctx.fill();
+ctx.rotate(-0.5*pi);
+
+ctx.rotate(1/6*pi);
+ctx.rect(43, 14, 50, 10);
+ctx.fill();
+ctx.rotate(-1/6*pi);
+
+ctx.rotate(-1/6*pi);
+ctx.rect(-6, 63, 50, 10);
+ctx.fill();
+ctx.rotate(1/6*pi);
+
+ctx.beginPath();
+ctx.arc(50, 50, 10, 0, 2*pi);
+ctx.fillStyle = "white";
+ctx.fill();
+
+</script>
+
+</body>
+</html>
