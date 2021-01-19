@@ -1,10 +1,10 @@
 
 
 // Settings Variables
-var color = "blue";
+var enableColor = true;
 var speed = 4;
-var settings = 1;
-var colorMode = 1;
+var settings = 0;
+color = blue;
 var backgroundColor = "white";
 
 // Global Variables
@@ -157,7 +157,7 @@ function drawSettings(){
 
     // Settings menu
     ctx.beginPath();
-    ctx.rect(20, 90, 400, 370);
+    ctx.rect(20, 90, 400, 310);
     ctx.fillStyle = "grey";
     ctx.globalAlpha = 0.6; // Transperancy on
     ctx.fill();
@@ -185,36 +185,40 @@ function drawSettings(){
     ctx.fillRect(320, 257, 25, 25);
     ctx.fillRect(360, 257, 25, 25);
 
-    ctx.font = "30px Arial"; //Colors
-    ctx.fillStyle = "black";
-    ctx.fillText("Color", 70, 340); 
-    ctx.fillStyle = "black";
-    ctx.fillRect(200, 318, 25, 25);
-    ctx.fillStyle = "white";
-    ctx.fillRect(240, 318, 25, 25);
-    ctx.fillStyle = "blue";
-    ctx.fillRect(280, 318, 25, 25);
-    ctx.fillStyle = "red";
-    ctx.fillRect(320, 318, 25, 25);
-    ctx.fillStyle = "green";
-    ctx.fillRect(360, 318, 25, 25);
 
     ctx.font = "30px Arial"; // Background color
     ctx.fillStyle = "black";
-    ctx.fillText("Background", 70, 400); 
+    ctx.fillText("Background", 70, 340); 
     ctx.fillStyle = "black";
-    ctx.fillRect(280, 378, 25, 25);
+    ctx.fillRect(280, 318, 25, 25);
     ctx.fillStyle = "grey";
-    ctx.fillRect(320, 378, 25, 25);
+    ctx.fillRect(320, 318, 25, 25);
     ctx.fillStyle = "white";
-    ctx.fillRect(360, 378, 25, 25);
+    ctx.fillRect(360, 318, 25, 25);
 
     
 }
 
 function processClick(e) {
-    console.log("Mouse inputs: " + e.clientX, e.clientY);
-
+    var mouseY = e.clientY;
+    var mouseX = e.clientX;
+    console.log("Mouse inputs: " + mouseX, mouseY);
+    if(mouseX > 25 && mouseX < 75 && mouseY > 25 && mouseY < 75){
+        console.log(settings);
+        if(settings == 1){
+            settings = 0;
+            return;
+        }else{
+            settings = 1;
+            return;
+        }
+    }
+   
+    if(settings == 1){
+        if(mouseX > 270 && mouseX < 295 && mouseY > 200 && mouseY < 225){
+            colors
+        }
+    }
 }
 
 function drawCog(){
