@@ -1,23 +1,36 @@
-var canvasW = 640;
-var canvasH = 480;
 
+
+// Settings Variables
 var color = "blue";
-var speed = 2;
+var speed = 0;
+var settings = 1;
+var colorMode = 1;
+var backgroundColor = "white";
 
-var xSpeed = Math.random() * speed;
-if(Math.random() * 2 <= 1){
-    xSpeed = xSpeed * -1;
+// Global Variables
+var c;
+var ctx;
+var xSpeed;
+var ySpeed;
+var xPos
+var yPos
+
+
+// Random speed
+
+function directionCalc(){
+    xSpeed = Math.random() * speed;
+    if(Math.random() * 2 <= 1){
+        xSpeed = xSpeed * -1;
+    }
+
+    ySpeed = Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+    if(Math.random() * 2 <= 1){
+        ySpeed = ySpeed * -1;
+    }
+    xPos = window.innerWidth/2;
+    yPos = window.innerHeight/2;
 }
-
-console.log(xSpeed);
-
-var ySpeed = Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
-if(Math.random() * 2 <= 1){
-    ySpeed = ySpeed * -1;
-}
-var xPos = window.innerWidth/2;
-var yPos = window.innerHeight/2;
-
 
 
 function initCanvas(){
@@ -26,11 +39,48 @@ function initCanvas(){
     canvas.height = window.innerHeight; 
 }
 
-function drawLogo(){
-    var c = document.getElementById("fsCanvas");
+
+
+function draw(){
+    
+    drawLogo(xPos, yPos, color);
+    // drawCog();
+
+
+    if(settings == 1){
+        drawSettings();
+    }
+
+}
+
+function animation() {
+    requestAnimationFrame(animation);
+    xPos += xSpeed;
+    yPos += ySpeed; 
+
+    if(xPos+20 <= 0 || xPos+270 >= window.innerWidth) {
+        xSpeed = -xSpeed;
+    }
+
+    if(yPos+20 <= 0 || yPos+165 >= window.innerHeight) {
+        ySpeed = -ySpeed;
+    }
+    draw();
+}
+
+document.addEventListener("DOMContentLoaded", function () { // Starting the programm
+    directionCalc();
+    initCanvas();
+    animation();
+});
+
+function drawLogo(xPos, yPos, color){
+    c = document.getElementById("fsCanvas");
     c.width = window.innerWidth;
     c.height = window.innerHeight; 
-    var ctx = c.getContext("2d");
+    ctx = c.getContext("2d");
+    
+
     var pi = Math.PI
     
     // i from logo
@@ -100,27 +150,67 @@ function drawLogo(){
     ctx.fillStyle = color;
     ctx.fillText("ims-T", xPos + 10, yPos + 150);
     */
+}
+
+function drawSettings(){
+
+    // Settings menu
+    ctx.beginPath();
+    ctx.rect(20, 80, 400, 370);
+    ctx.fillStyle = "grey";
+    ctx.globalAlpha = 0.6; // Transperancy on
+    ctx.fill();
+    ctx.globalAlpha = 1; // Transperancy off
+   
+    ctx.font = "50px Impact"; // Title
+    ctx.fillStyle = "black";
+    ctx.fillText("Settings", 130, 150);
     
+    ctx.beginPath(); //Color Mode
+    ctx.rect(270, 200, 25, 25);
+    ctx.fillStyle = "grey";
+    ctx.fill();
+    ctx.font = "30px Arial"; 
+    ctx.fillStyle = "black";
+    ctx.fillText("Color Mode", 70, 223);
 
+    ctx.font = "30px Arial"; //Speed
+    ctx.fillStyle = "black";
+    ctx.fillText("Speed", 70, 280); 
+    ctx.fillStyle = "grey";
+    ctx.fillRect(200, 257, 25, 25);
+    ctx.fillRect(240, 257, 25, 25);
+    ctx.fillRect(280, 257, 25, 25);
+    ctx.fillRect(320, 257, 25, 25);
+    ctx.fillRect(360, 257, 25, 25);
+
+    ctx.font = "30px Arial"; //Colors
+    ctx.fillStyle = "black";
+    ctx.fillText("Color", 70, 340); 
+    ctx.fillStyle = "black";
+    ctx.fillRect(200, 318, 25, 25);
+    ctx.fillStyle = "white";
+    ctx.fillRect(240, 318, 25, 25);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(280, 318, 25, 25);
+    ctx.fillStyle = "red";
+    ctx.fillRect(320, 318, 25, 25);
+    ctx.fillStyle = "green";
+    ctx.fillRect(360, 318, 25, 25);
+
+    ctx.font = "30px Arial"; // Background color
+    ctx.fillStyle = "black";
+    ctx.fillText("Background", 70, 400); 
+    ctx.fillStyle = "black";
+    ctx.fillRect(280, 378, 25, 25);
+    ctx.fillStyle = "grey";
+    ctx.fillRect(320, 378, 25, 25);
+    ctx.fillStyle = "white";
+    ctx.fillRect(360, 378, 25, 25);
+
+    
 }
 
-function animation() {
-    requestAnimationFrame(animation);
-    xPos += xSpeed;
-    yPos += ySpeed; 
-
-    if(xPos+20 <= 0 || xPos+270 >= window.innerWidth) {
-        xSpeed = -xSpeed;
-    }
-
-    if(yPos+20 <= 0 || yPos+165 >= window.innerHeight) {
-        ySpeed = -ySpeed;
-    }
-    drawLogo();
+function processClick(mouseX, mouseY) {
+    log(mouseX, mouseY);
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    initCanvas();
-    drawLogo();
-    animation();
-});
