@@ -2,7 +2,7 @@
 
 // Settings Variables
 var color = "blue";
-var speed = 0;
+var speed = 4;
 var settings = 1;
 var colorMode = 1;
 var backgroundColor = "white";
@@ -37,6 +37,7 @@ function initCanvas(){
     canvas = document.getElementById("fsCanvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight; 
+    canvas.addEventListener("click", processClick); 
 }
 
 
@@ -44,7 +45,7 @@ function initCanvas(){
 function draw(){
     
     drawLogo(xPos, yPos, color);
-    // drawCog();
+    drawCog();
 
 
     if(settings == 1){
@@ -156,7 +157,7 @@ function drawSettings(){
 
     // Settings menu
     ctx.beginPath();
-    ctx.rect(20, 80, 400, 370);
+    ctx.rect(20, 90, 400, 370);
     ctx.fillStyle = "grey";
     ctx.globalAlpha = 0.6; // Transperancy on
     ctx.fill();
@@ -211,6 +212,35 @@ function drawSettings(){
     
 }
 
-function processClick(mouseX, mouseY) {
-    log(mouseX, mouseY);
+function processClick(e) {
+    console.log("Mouse inputs: " + e.clientX, e.clientY);
+
+}
+
+function drawCog(){
+    var pi = Math.PI;
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(50, 50, 20, 0, 2*pi);
+    ctx.fill();
+
+    ctx.rotate(0.5*pi);
+    ctx.rect(25, -55, 50, 10);
+    ctx.fill();
+    ctx.rotate(-0.5*pi);
+
+    ctx.rotate(1/6*pi);
+    ctx.rect(43, 14, 50, 10);
+    ctx.fill();
+    ctx.rotate(-1/6*pi);
+
+    ctx.rotate(-1/6*pi);
+    ctx.rect(-6, 63, 50, 10);
+    ctx.fill();
+    ctx.rotate(1/6*pi);
+
+    ctx.beginPath();
+    ctx.arc(50, 50, 10, 0, 2*pi);
+    ctx.fillStyle = "white";
+    ctx.fill();
 }
