@@ -4,8 +4,8 @@
 var enableColor = true;
 var speed = 4;
 var settings = 0;
-var colors = ["red", "blue", "green"];
-var color = "red";
+var colors = ["#7F7FD5", "#f5af19", "#ad5389"];
+var color = colors[0];
 var colorNumber = 0;
 var backgroundColor = "white";
 
@@ -68,7 +68,7 @@ function animation() {
         xSpeed = -xSpeed;
         if(enableColor){
             colorNumber++;
-            if(colorNumber == 3){
+            if(colorNumber == colors.length){
                 colorNumber = 0;
             }
             color = colors[colorNumber];
