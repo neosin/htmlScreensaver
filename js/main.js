@@ -133,11 +133,11 @@ function processClick(e) { // Is called each time a click inside the window happ
         // Bakcground color checkboxes
         if(mouseX > 280 && mouseX < 385 && mouseY > 318 && mouseY < 343){
             if(mouseX > 280 && mouseX < 305){
-                backgroundColor = "black";
+                backgroundColor = "#100c08";
             }else if(mouseX > 320 && mouseX < 345){
-                backgroundColor = "white";
+                backgroundColor = "#f8f8ff";
             }else if(mouseX > 360 && mouseX < 385){
-                backgroundColor = "violet";
+                backgroundColor = "#ee82ee";
             }
             document.body.style.backgroundColor = backgroundColor; // Set the css background color to the selected color
         }
@@ -291,10 +291,10 @@ function drawSettings(){ // Is called each frame, but only when settings are on
 
 function drawCog(){ // Draws the cog for the settings menu in each frame
     
-    if(backgroundColor == "black") { // If the background color is black, the cog needs to be white or it can't be seen
-        ctx.fillStyle = "white"; 
+    if(backgroundColor == "#f8f8ff") { // If the background color is black, the cog needs to be white or it can't be seen
+        ctx.fillStyle = "#100c08"; 
     } else {
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "#f8f8ff";
     }
     
     // Big circle
