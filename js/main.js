@@ -224,13 +224,7 @@ function processClick(e) {
     console.log("Mouse inputs: " + mouseX, mouseY);
     if(mouseX > 25 && mouseX < 75 && mouseY > 25 && mouseY < 75){
         console.log(settings);
-        if(settings == 1){
-            settings = 0;
-            return;
-        }else{
-            settings = 1;
-            return;
-        }
+        settings = !settings;
     }
    
     if(settings == 1){
@@ -298,6 +292,6 @@ function drawCog(){
 
     ctx.beginPath();
     ctx.arc(50, 50, 10, 0, 2*pi);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = backgroundColor;
     ctx.fill();
 }
