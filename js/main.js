@@ -270,7 +270,12 @@ function processClick(e) {
 
 function drawCog(){
     var pi = Math.PI;
-    ctx.fillStyle = "black";
+    if(backgroundColor == "black") {
+        ctx.fillStyle = "white";
+    } else {
+        ctx.fillStyle = "black";
+    }
+    
     ctx.beginPath();
     ctx.arc(50, 50, 20, 0, 2*pi);
     ctx.fill();
