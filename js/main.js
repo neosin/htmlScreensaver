@@ -4,8 +4,13 @@
 var enableColor = true;
 var speed = 4;
 var settings = 0;
-color = blue;
+var colors = ["red", "blue", "green"];
+var color = "red";
+var colorNumber = 0;
 var backgroundColor = "white";
+
+
+
 
 // Global Variables
 var c;
@@ -61,10 +66,24 @@ function animation() {
 
     if(xPos+20 <= 0 || xPos+270 >= window.innerWidth) {
         xSpeed = -xSpeed;
+        if(enableColor){
+            colorNumber++;
+            if(colorNumber == 3){
+                colorNumber = 0;
+            }
+            color = colors[colorNumber];
+        }
     }
 
     if(yPos+20 <= 0 || yPos+165 >= window.innerHeight) {
         ySpeed = -ySpeed;
+        if(enableColor){
+            colorNumber++;
+            if(colorNumber == 3){
+                colorNumber = 0;
+            }
+            color = colors[colorNumber];
+        }
     }
     draw();
 }
@@ -191,9 +210,9 @@ function drawSettings(){
     ctx.fillText("Background", 70, 340); 
     ctx.fillStyle = "black";
     ctx.fillRect(280, 318, 25, 25);
-    ctx.fillStyle = "grey";
-    ctx.fillRect(320, 318, 25, 25);
     ctx.fillStyle = "white";
+    ctx.fillRect(320, 318, 25, 25);
+    ctx.fillStyle = "violet";
     ctx.fillRect(360, 318, 25, 25);
 
     
@@ -215,8 +234,42 @@ function processClick(e) {
     }
    
     if(settings == 1){
+        // Colormode
         if(mouseX > 270 && mouseX < 295 && mouseY > 200 && mouseY < 225){
-            colors
+            enableColor = !enableColor;   
+        }
+        // Speed settings
+        if(mouseX > 200 && mouseX < 385 && mouseY > 255 && mouseY < 280){
+            if(mouseX > 200 && mouseX < 225){
+                speed = 2;
+            }else if(mouseX > 240 && mouseX < 265){
+                speed = 4;
+            }else if(mouseX > 280 && mouseX < 305){
+                speed = 6;
+            }else if(mouseX > 320 && mouseX < 345){
+                speed = 8;
+            }else if(mouseX > 360 && mouseX < 385){
+                speed = 100;
+            }
+            xSpeed = Math.random() * speed;
+            if(Math.random() * 2 <= 1){
+                xSpeed = xSpeed * -1;
+            }
+
+            ySpeed = Math.sqrt(Math.pow(speed, 2) - Math.pow(xSpeed, 2));
+            if(Math.random() * 2 <= 1){
+                ySpeed = ySpeed * -1;
+            }
+        }
+        if(mouseX > 280 && mouseX < 385 && mouseY > 318 && mouseY < 343){
+            if(mouseX > 280 && mouseX < 305){
+                backgroundColor = "black";
+            }else if(mouseX > 320 && mouseX < 345){
+                backgroundColor = "white";
+            }else if(mouseX > 360 && mouseX < 385){
+                backgroundColor = "violet";
+            }
+            document.body.style.backgroundColor = backgroundColor;
         }
     }
 }
