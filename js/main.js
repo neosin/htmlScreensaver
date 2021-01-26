@@ -91,6 +91,7 @@ function animation() { // Gets called for each frame
 }
 
 document.addEventListener("DOMContentLoaded", function () { // On page load, Starting the programm
+    document.body.style.backgroundColor = backgroundColor; // Set the css background color to the selected color
     directionCalc();
     initCanvas();
     animation();
