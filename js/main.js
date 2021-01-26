@@ -4,7 +4,7 @@
 var enableColor = true;
 var speed = 4;
 var settings = 0;
-var colors = ["#7F7FD5", "#f5af19", "#ad5389"];
+var colors = ["#40E0D0", "#f5af19", "#dd1818"];
 var color = colors[0];
 var colorNumber = 0;
 var backgroundColor = "white";
