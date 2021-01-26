@@ -177,7 +177,9 @@ function drawSettings(){
     // Settings menu
     ctx.beginPath();
     ctx.rect(20, 90, 400, 310);
-    ctx.fillStyle = "grey";
+     ctx.fillStyle = "grey";
+    
+    
     ctx.globalAlpha = 0.6; // Transperancy on
     ctx.fill();
     ctx.globalAlpha = 1; // Transperancy off
@@ -188,7 +190,11 @@ function drawSettings(){
     
     ctx.beginPath(); //Color Mode
     ctx.rect(270, 200, 25, 25);
-    ctx.fillStyle = "grey";
+    if(enableColor){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fill();
     ctx.font = "30px Arial"; 
     ctx.fillStyle = "black";
@@ -197,11 +203,36 @@ function drawSettings(){
     ctx.font = "30px Arial"; //Speed
     ctx.fillStyle = "black";
     ctx.fillText("Speed", 70, 280); 
-    ctx.fillStyle = "grey";
+    
+    if(speed == 2){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fillRect(200, 257, 25, 25);
+    if(speed == 4){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fillRect(240, 257, 25, 25);
+    if(speed == 6){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fillRect(280, 257, 25, 25);
+    if(speed == 8){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fillRect(320, 257, 25, 25);
+    if(speed == 100){
+        ctx.fillStyle = "lightgreen";
+    }else{
+        ctx.fillStyle = "grey";
+    }
     ctx.fillRect(360, 257, 25, 25);
 
 
