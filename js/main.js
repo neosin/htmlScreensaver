@@ -8,7 +8,7 @@
 var enableColor = true;                         // If true, the logo changes color after each bounde
 var colors = ["#4A00E0", "#FFF200", "#dd1818"]; // All colors the logo can have (can be changed)                                              
 var speed = 4;                                  // Speed of the logo in pixels per frame
-var backgroundColor = "white";                  // Background color
+var backgroundColor = "#f8f8ff";                  // Background color
 
 
 // Global Variables
